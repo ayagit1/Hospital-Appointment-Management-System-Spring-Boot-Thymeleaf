@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ajouter un nouveau malade<</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-info navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" th:href="@{/index}">APPLICATION DE GESTION MEDECALE</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+   <ul class="navbar-nav">
+      <li class="nav-item">
+       <a class="nav-link" th:href="@{/medecins}">Medecins</a>
+       </li>
+      <li class="nav-item">
+      <a class="nav-link" th:href="@{/consultations}">Consultations</a>
+      </li>
+      <li class="nav-item">        
+        <a class="nav-link" th:href="@{/malades}">Malades</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<div class="container">
+	
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card border-primary">
+		<h1 class="text-center text-primary">Ajouter un nouveau malade</h1>
+			<div class="card-body">
+				<form th:action="@{/malades}" th:object ="${malade}" method="POST">
+				<div class="form-group">
+					<label>Nom du malade</label>
+					<input
+					type="text"
+					name="nomMal"
+					th:field="*{nomMal}"
+					class="form-control"
+					placeholder="Entrer le nom "
+					required="required"
+					/>
+				</div>
+				<div class="form-group">
+					<label>Date de naissance</label>
+					<input
+					type="date"
+					name="dateN"
+					th:field="*{dateN}"
+					class="form-control"
+					placeholder="Entrer la date"
+					required="required"
+					/>
+				</div>
+				<div class="form-group">
+					<label>Numéro de télephone</label>
+					<input
+					type="text"
+					name="tel_mal"
+					th:field="*{tel_mal}"
+					class="form-control"
+					placeholder="Entrer le numero de tél"
+					required="required"
+					/>
+				</div>
+				<div class="box-footer">
+				<button type="submit" class="btn btn-primary">
+				Valider
+				</button>
+					
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

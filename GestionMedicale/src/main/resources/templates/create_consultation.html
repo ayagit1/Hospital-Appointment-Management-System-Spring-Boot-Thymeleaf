@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ajouter une consulatation</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-info navbar-dark">
+  <!-- Brand -->
+ <a class="navbar-brand" th:href="@{/index}">APPLICATION DE GESTION MEDECALE</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+     <ul class="navbar-nav">
+      <li class="nav-item">
+       <a class="nav-link" th:href="@{/medecins}">Medecins</a>
+       </li>
+      <li class="nav-item">
+      <a class="nav-link" th:href="@{/consultations}">Consultations</a>
+      </li>
+      <li class="nav-item">        
+        <a class="nav-link" th:href="@{/malades}">Malades</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<div class="container">
+	
+	<div class="row">
+		<div class="col-lg-7 col-md-6 col-sm-6 container justify-content-center card border-primary">
+		<h1 class="text-center text-primary">Ajouter une consultation</h1>
+			<div class="card-body">
+				<form th:action="@{/consultations}" th:object ="${consultation}" method="POST">
+				
+				<div class="form-group">
+					<strong><label>Date de consultation</label></strong>
+					<input
+					type="date"
+					name="dateCons"
+					th:field="*{dateCons}"
+					class="form-control"
+					placeholder="Entrer une date"
+					/>
+				</div>
+				<div class="form-group">
+					<strong><label>Nom du malade</label></strong>
+					<select th:field="*{malade}" class="form-control">
+					<th:block th:each="med :${listmal}">
+					<option th:text="${med.nomMal}" th:value="${med.idmal}"/></th:block>
+					</select>
+				</div>
+				<div class="form-group">
+					<strong><label>Prix de consultation</label></strong>
+					<input
+					type="text"
+					name="prix"
+					step="0.1"
+					th:field="*{prix}"
+					class="form-control"
+					placeholder="Entrer un prix"
+					/>
+				</div>
+				<div class="form-group">
+					<strong><label>Nom du medecin</label></strong>
+					<select th:field="*{medecin}" class="form-control">
+					<th:block th:each="med :${listmed}">
+					<option th:text="${med.nomMed}" th:value="${med.idmed}"/></th:block>
+					</select>
+				</div>
+				<div class="form-group">
+					<strong><label>description</label></strong>
+					<input
+					type="text"
+					name="description"
+					th:field="*{description}"
+					class="form-control"
+					placeholder="Entrer une description"
+					/>
+				</div>
+				
+				<div class="box-footer">
+				<button type="submit" class="btn btn-primary">
+				Valider
+				</button>
+					
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+
+</html>

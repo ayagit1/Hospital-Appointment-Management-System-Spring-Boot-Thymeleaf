@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Liste des consultations</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-info navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" th:href="@{/index}">APPLICATION DE GESTION MEDECALE</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+     <ul class="navbar-nav">
+      <li class="nav-item">
+       <a class="nav-link" th:href="@{/medecins}">Medecins</a>
+       </li>
+      <li class="nav-item">
+      <a class="nav-link" th:href="@{/consultations}">Consultations</a>
+      </li>
+      <li class="nav-item">        
+        <a class="nav-link" th:href="@{/malades}">Malades</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+	<div class="container">
+	<div class="row">
+		<h1>
+		Liste des consultations
+		</h1>
+	</div>
+	<div class="row">
+		<div class="col-lg-3">
+		<a th:href="@{consultations/new}" class="btn btn-primary btn-sm mb-3">Ajouter une consultations</a>
+		</div>
+	</div>
+	<table class="table table-striped table-bordered " >
+		<thead class="table-info ">
+			<tr>
+			<th>Id</th>
+			<th>Date</th>
+			<th>Prix</th>
+			<th>Nom medecin</th>
+			<th>Nom malade</th>
+			<th>Description</th>
+			<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each ="Consultation: ${consultations}">
+			<td th:text ="${Consultation.idCons}"></td>
+			<td th:text ="${Consultation.dateCons}"></td>
+			<td th:text ="${Consultation.prix}"></td>
+			<td th:text ="${Consultation.medecin.nomMed}"></td>
+			<td th:text ="${Consultation.malade.nomMal}"></td>
+			<td th:text ="${Consultation.description}"></td>
+			<td>
+			<a th:href ="@{/consultations/edit/{idCons}(idCons=${Consultation.idCons})}" 
+			class="btn btn-warning">Modifier </a>
+			<a th:href ="@{/consultations/{idCons}(idCons=${Consultation.idCons})}" 
+			class="btn btn-danger">Supprimer</a>
+			</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+
+</html>
